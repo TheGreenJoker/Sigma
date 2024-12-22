@@ -24,11 +24,15 @@ def lire(chemin:str, binaire=0):
     if existe_fichier(chemin):
         if binaire:
             fichier = open(chemin, 'rb')
-            fichier = binaire_en_chaine(fichier)
+            contenu = binaire_en_chaine(fichier.read())
         else:
-            fichier = open(chemin, 'r')
-        
-        contenu = str(fichier.read())
+            try:
+                fichier = open(chemin, 'r')
+                contenu = str(fichier.read())
+            except UnicodeDecodeError:
+                print("\033[31mFormat de fichier incorrect\033[0m\nEssayez de l'ouvrir en format binaire")
+                exit(1)
+
         fichier.close()
         return contenu
     if definput("Le fichier spécifié n'existe pas, voulez-vous le creer (O/N)", "O").lower() == 'o':

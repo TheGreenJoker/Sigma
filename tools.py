@@ -23,6 +23,7 @@ def texte_vers_binaire(texte: str):
     :return: Un objet `bytes` représentant la valeur binaire de la chaîne.
     :raises ValueError: Si la chaîne contient des caractères autres que '0' ou '1'.
     """
+    texte = texte.replace("\n", "")
     for char in texte:
         if (char != '0') and (char != '1'):
             raise ValueError("\033[31mLa chaine de caractère doit être constituée uniquement de 0 et de 1\033[0m")

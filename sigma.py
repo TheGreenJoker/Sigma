@@ -18,7 +18,9 @@ def run(nom_fichier, binaire=0):
     
     gestionaire.afficher_fichier(fichier_lignes)
     while sigma:
-        choix = input("\n[M]odifier une ligne, [I]nsérer une ligne, s[U]pprimer une ligne, [C]hercher une chaîne, [S]auvegarder, [Q]uitter: ").strip().lower()
+        if binaire:
+            print("\n\nLes retours a la ligne ne changent rien ici, ils sont juste présents pour plus de lisibilité.")
+        choix = input("[M]odifier une ligne, [I]nsérer une ligne, s[U]pprimer une ligne, [C]hercher une chaîne, [S]auvegarder, [Q]uitter: ").strip().lower()
 
         if choix == 'm':
             try:
