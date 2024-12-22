@@ -33,6 +33,8 @@ def lire(chemin:str, binaire=0):
     if definput("Le fichier spécifié n'existe pas, voulez-vous le creer (O/N)", "O").lower() == 'o':
         ecrire('', chemin)
         return ''
+    else:
+        exit()
 
             
 def ecrire(contenu:str, chemin:str, binaire=0):

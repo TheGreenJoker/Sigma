@@ -40,7 +40,7 @@ def run(nom_fichier, binaire=0):
 
         elif choix == 'c':
             chaine = input("Entrez la chaîne à surligner : ")
-            gestionaire.afficher_fichier_avec_numeros_et_surlignage(fichier_lignes, chaine)
+            gestionaire.afficher_chercher_fichier(fichier_lignes, chaine)
         
         elif choix == 's':
             fichier = gestionaire.liste_vers_chaine(fichier_lignes)
