@@ -29,6 +29,19 @@ def texte_vers_binaire(texte: str):
     
     return int(texte, 2).to_bytes((len(texte) + 7) // 8, byteorder="big")
 
+def binaire_en_chaine(bin_data):
+    """
+    Convertit une séquence d'octets en une chaîne binaire.
+
+    :param bin_data: Séquence d'octets (type `bytes` ou `bytearray`) à convertir en chaîne binaire.
+    :return: Une chaîne de caractères composée des bits des octets en représentation binaire.
+    """
+    try:
+        return ''.join(format(byte, '08b') for byte in bin_data)
+    except TypeError:
+        effacer_terminal()
+        print("\033[31mFormat de fichier incorrect\033[0m")
+        exit(1)
 
 def definput(phrase:str, defaut:str):
     """

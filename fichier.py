@@ -1,4 +1,4 @@
-from tools import texte_vers_binaire, definput
+from tools import texte_vers_binaire, binaire_en_chaine, definput
 
 def existe_fichier(nom:str):
     """
@@ -24,6 +24,7 @@ def lire(chemin:str, binaire=0):
     if existe_fichier(chemin):
         if binaire:
             fichier = open(chemin, 'rb')
+            fichier = binaire_en_chaine(fichier)
         else:
             fichier = open(chemin, 'r')
         
