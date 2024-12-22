@@ -19,9 +19,11 @@ def run(nom_fichier, binaire=0):
     sigma = True
     fichier_lignes = gestionaire.chaine_vers_liste(disque.lire(nom_fichier, binaire=binaire))
     
-    gestionaire.afficher_fichier(fichier_lignes)
+    gestionaire.afficher_fichier(fichier_lignes, binaire)
     while sigma:
         if binaire:
+            binaire_texte = gestionaire.liste_vers_chaine(fichier_lignes).replace("\n", "")
+            fichier_lignes = [binaire_texte[i:i+16] for i in range(0, len(binaire_texte), 16)]
             print("\n\nLes retours a la ligne ne changent rien ici, ils sont juste présents pour plus de lisibilité.")
         choix = input("[M]odifier une ligne, [I]nsérer une ligne, s[U]pprimer une ligne, [C]hercher une chaîne, [S]auvegarder, [Q]uitter: ").strip().lower()
 
@@ -32,7 +34,7 @@ def run(nom_fichier, binaire=0):
                 fichier_lignes = gestionaire.modifier_ligne(fichier_lignes, numero_ligne, nouvelle_ligne)
             except ValueError:
                 pass # c'est moche mais ca marche
-            gestionaire.afficher_fichier(fichier_lignes)
+            gestionaire.afficher_fichier(fichier_lignes, binaire)
         
         elif choix == 'i':
             if fichier_lignes != []:
@@ -45,7 +47,7 @@ def run(nom_fichier, binaire=0):
             else:
                 nouvelle_ligne = input("Nouvelle ligne à insérer : ")
                 fichier_lignes = gestionaire.inserer_ligne(fichier_lignes, 1, nouvelle_ligne)
-            gestionaire.afficher_fichier(fichier_lignes)
+            gestionaire.afficher_fichier(fichier_lignes, binaire)
 
         elif choix == 'u':
             if fichier_lignes != []:
@@ -54,11 +56,11 @@ def run(nom_fichier, binaire=0):
                     fichier_lignes = gestionaire.supprimer_ligne(fichier_lignes, numero_ligne)
                 except ValueError:
                     pass # c'est moche mais ca marche
-            gestionaire.afficher_fichier(fichier_lignes)
+            gestionaire.afficher_fichier(fichier_lignes, binaire)
 
         elif choix == 'c':
             chaine = input("Entrez la chaîne à surligner : ")
-            gestionaire.afficher_chercher_fichier(fichier_lignes, chaine)
+            gestionaire.afficher_chercher_fichier(fichier_lignes, chaine, binaire)
         
         elif choix == 's':
             fichier = gestionaire.liste_vers_chaine(fichier_lignes)
@@ -66,14 +68,14 @@ def run(nom_fichier, binaire=0):
             if definput(f"Voulez-vous remplacer le contenu de {nom_future_fichier} avec le tampon (O/N)", "N").lower() == 'o':
                 nom_fichier = nom_future_fichier
                 disque.ecrire(fichier, nom_fichier, binaire=binaire)
-            gestionaire.afficher_fichier(fichier_lignes)
+            gestionaire.afficher_fichier(fichier_lignes, binaire)
         
         elif choix == 'q':
             effacer_terminal()
             sigma = False
 
         else:
-            gestionaire.afficher_fichier(fichier_lignes)
+            gestionaire.afficher_fichier(fichier_lignes, binaire)
 
 if __name__ == "__main__":
     try:

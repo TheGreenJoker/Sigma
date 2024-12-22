@@ -3,27 +3,39 @@
 
 from tools import effacer_terminal
 
-def afficher_fichier(lignes:list):
+def afficher_fichier(lignes:list, binaire=0):
     """
     Affiche le contenu du fichier avec les numéros des lignes.
     
     :param lignes: Liste de chaînes de caractères représentant les lignes du fichier.
+    :param binaire: lire en binaire ou en texte (0=t/1=b)
     """
     effacer_terminal()
+    
+    if binaire:
+        binaire_texte = liste_vers_chaine(lignes).replace("\n", "")
+        lignes = [binaire_texte[i:i+16] for i in range(0, len(binaire_texte), 16)]
+    
     if lignes != []:
         for index, ligne in enumerate(lignes, start=1):
             print(f"{index}: {ligne}")
     else:
         print("Fichier Vide, entrez i pourinserer une ligne")
 
-def afficher_chercher_fichier(fichier_lignes: list, chaine: str):
+def afficher_chercher_fichier(fichier_lignes: list, chaine: str, binaire=0):
     """
     Affiche le contenu du fichier avec les numéros des lignes et surligne toutes les occurrences de la chaîne spécifiée.
     
     :param fichier_lignes: Liste de chaînes de caractères représentant les lignes du fichier.
     :param chaine: La chaîne à surligner dans chaque ligne.
+    :param binaire: lire en binaire ou en texte (0=t/1=b)
     """
     effacer_terminal()
+
+    if binaire:
+        binaire_texte = liste_vers_chaine(fichier_lignes).replace("\n", "")
+        fichier_lignes = [binaire_texte[i:i+16] for i in range(0, len(binaire_texte), 16)]
+
     for index, ligne in enumerate(fichier_lignes, start=1):
         ligne_surlignee = ""
         start = 0

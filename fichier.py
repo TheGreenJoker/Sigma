@@ -21,7 +21,7 @@ def lire(chemin:str, binaire=0):
     Retourne le contenu d'un fichier.
 
     :param chemin: chemin vers le fichier
-    :param binaire: lire en binaire ou en texte (0=b/1=t)
+    :param binaire: lire en binaire ou en texte (0=t/1=b)
     :return: contenu du fichier
     """
     if existe_fichier(chemin):
