@@ -45,7 +45,7 @@ def run(nom_fichier, binaire=0):
         elif choix == 's':
             fichier = gestionaire.liste_vers_chaine(fichier_lignes)
             nom_future_fichier = definput("Entrez le nom du fichier a écrire", nom_fichier)
-            if definput(f"Voulez-vous effacer le contenu de {nom_future_fichier} avec le buffer (O/N)", "N").lower() == 'o':
+            if definput(f"Voulez-vous remplacer le contenu de {nom_future_fichier} avec le tampon (O/N)", "N").lower() == 'o':
                 nom_fichier = nom_future_fichier
                 disque.ecrire(fichier, nom_fichier, binaire=binaire)
             gestionaire.afficher_fichier(fichier_lignes)
