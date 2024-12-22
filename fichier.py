@@ -15,7 +15,6 @@ def existe_fichier(nom:str):
     except FileNotFoundError:
         return 0
 
-
 def lire(chemin:str, binaire=0):
     """
     Retourne le contenu d'un fichier.

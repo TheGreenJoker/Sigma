@@ -121,4 +121,3 @@ def chaine_vers_liste(chaine:str):
     :return: Liste de chaînes de caractères, chaque chaîne représentant une ligne.
     """
     return chaine.splitlines()
-

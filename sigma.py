@@ -10,8 +10,6 @@ def lancement():
     binaire = 0 if definput("Voulez-vous ouvrir le fichier en binaire (O/N)", "N").lower() == 'n' else 1
     run(fichier, binaire=binaire)
 
-
-
 def run(nom_fichier, binaire=0):
     """
     Editeur de texte entier
