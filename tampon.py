@@ -7,30 +7,34 @@ def afficher_fichier(lignes:list):
     :param lignes: Liste de chaînes de caractères représentant les lignes du fichier.
     """
     effacer_terminal()
-    for index, ligne in enumerate(lignes, start=1):
-        print(f"{index}: {ligne}")
+    if lignes != []:
+        for index, ligne in enumerate(lignes, start=1):
+            print(f"{index}: {ligne}")
+    else:
+        print("Fichier Vide, entrez i pourinserer une ligne")
 
-def afficher_chercher_fichier(fichier_lignes:list, chaine:str):
+def afficher_chercher_fichier(fichier_lignes: list, chaine: str):
     """
-    Affiche le contenu du fichier avec les numéros des lignes et surligne la chaîne spécifiée.
+    Affiche le contenu du fichier avec les numéros des lignes et surligne toutes les occurrences de la chaîne spécifiée.
     
     :param fichier_lignes: Liste de chaînes de caractères représentant les lignes du fichier.
     :param chaine: La chaîne à surligner dans chaque ligne.
     """
     effacer_terminal()
     for index, ligne in enumerate(fichier_lignes, start=1):
-        if chaine in ligne:
-            debut = ligne.find(chaine)
+        ligne_surlignee = ""
+        start = 0
+        debut = ligne.find(chaine, start)
+        while debut != -1:
             fin = debut + len(chaine)
-            # Afficher la ligne avec la chaîne surlignée
-            ligne_surlignee = (
-                ligne[:debut] + 
-                '\033[47m' + ligne[debut:fin] + '\033[0m' + 
-                ligne[fin:]
-            )
-            print(f"{index}: {ligne_surlignee}")
-        else:
-            print(f"{index}: {ligne}")
+            # Ajouter la partie avant, la chaîne surlignée, et ajuster le point de départ
+            ligne_surlignee += ligne[start:debut] + '\033[47m' + ligne[debut:fin] + '\033[0m'
+            start = fin
+            debut = ligne.find(chaine, start)
+        # Ajouter la partie restante de la ligne
+        ligne_surlignee += ligne[start:]
+        print(f"{index}: {ligne_surlignee}")
+
 
 def modifier_ligne(fichier_lignes:list, numero_ligne:int, nouvelle_ligne:str):
     """

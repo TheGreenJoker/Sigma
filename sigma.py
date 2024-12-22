@@ -18,24 +18,37 @@ def run(nom_fichier, binaire=0):
     
     gestionaire.afficher_fichier(fichier_lignes)
     while sigma:
-        choix = input("\n[M]odifier une ligne, [I]nsérer une ligne, [C]hercher une chaîne, [S]auvegarder, [Q]uitter: ").strip().lower()
+        choix = input("\n[M]odifier une ligne, [I]nsérer une ligne, s[U]pprimer une ligne, [C]hercher une chaîne, [S]auvegarder, [Q]uitter: ").strip().lower()
 
         if choix == 'm':
             try:
                 numero_ligne = int(input("Numéro de la ligne à modifier : "))
-                nouvelle_ligne = input("Nouvelle ligne : ")
+                nouvelle_ligne = definput("Nouvelle ligne", fichier_lignes[numero_ligne-1])
                 fichier_lignes = gestionaire.modifier_ligne(fichier_lignes, numero_ligne, nouvelle_ligne)
             except ValueError:
                 pass # c'est moche mais ca marche
             gestionaire.afficher_fichier(fichier_lignes)
         
         elif choix == 'i':
-            try:
-                numero_ligne = int(input("Numéro de la ligne avant laquelle insérer : "))
+            if fichier_lignes != []:
+                try:
+                    numero_ligne = int(input("Numéro de la ligne avant laquelle insérer : "))
+                    nouvelle_ligne = input("Nouvelle ligne à insérer : ")
+                    fichier_lignes = gestionaire.inserer_ligne(fichier_lignes, numero_ligne, nouvelle_ligne)
+                except ValueError:
+                    pass # c'est moche mais ca marche
+            else:
                 nouvelle_ligne = input("Nouvelle ligne à insérer : ")
-                fichier_lignes = gestionaire.inserer_ligne(fichier_lignes, numero_ligne, nouvelle_ligne)
-            except ValueError:
-                pass # c'est moche mais ca marche
+                fichier_lignes = gestionaire.inserer_ligne(fichier_lignes, 1, nouvelle_ligne)
+            gestionaire.afficher_fichier(fichier_lignes)
+
+        elif choix == 'u':
+            if fichier_lignes != []:
+                try:
+                    numero_ligne = int(input("Numéro de la ligne à supprimer : "))
+                    fichier_lignes = gestionaire.supprimer_ligne(fichier_lignes, numero_ligne)
+                except ValueError:
+                    pass # c'est moche mais ca marche
             gestionaire.afficher_fichier(fichier_lignes)
 
         elif choix == 'c':
