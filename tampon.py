@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from tools import effacer_terminal
 
 def afficher_fichier(lignes:list):

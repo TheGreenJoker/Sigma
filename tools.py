@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from os import system # Effacer le terminal
 import platform       # Portabilitée du programe
 

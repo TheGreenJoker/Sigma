@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from tools import texte_vers_binaire, binaire_en_chaine, definput
 
 def existe_fichier(nom:str):

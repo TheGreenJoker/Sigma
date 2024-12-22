@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import tampon as gestionaire
 from tools import effacer_terminal, definput
 import fichier as disque
