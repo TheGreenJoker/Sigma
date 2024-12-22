@@ -73,4 +73,7 @@ def run(nom_fichier, binaire=0):
             gestionaire.afficher_fichier(fichier_lignes)
 
 if __name__ == "__main__":
-    lancement()
+    try:
+        lancement()
+    except Exception as e:
+        print(f"\033[31mErreur: {e}\033[0m")
